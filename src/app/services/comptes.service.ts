@@ -1,20 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Compte } from '../domain/compte';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ComptesService {
 
+  private URL = 'http://localhost:1461/api/Comptes';
+
   constructor(private _http: HttpClient) { }
 
-  getAllComptes():Compte[] {
-    return null;
-    // return [
-    //   {'numero': 'SS-Fake001', 'proprietaire': 'FakeProp1', 'solde': 11111},
-    //   {'numero': 'Fake002', 'proprietaire': 'FakeProp2', 'solde': 11111},
-    //   {'numero': 'Fake003', 'proprietaire': 'FakeProp3', 'solde': 11111},
-    // ];
+  getAllComptes(): Observable<Compte[]> {
+    return this._http.get<Compte[]>(this.URL) ;
   }
 }

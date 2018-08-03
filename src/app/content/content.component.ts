@@ -14,7 +14,9 @@ export class ContentComponent implements OnInit {
   constructor(private _service: ComptesService) { } // DI
 
   ngOnInit() {
-    this.data = this._service.getAllComptes();
+    this._service.getAllComptes().subscribe(
+      res => this.data = res
+    );
   }
 
 }
